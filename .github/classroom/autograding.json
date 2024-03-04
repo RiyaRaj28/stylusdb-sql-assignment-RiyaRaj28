@@ -1,7 +1,7 @@
 {
   "tests": [
     {
-      "name": "STEP-1 Test",
+      "name": "Step-1 Test",
       "setup": "npm install",
       "run": "npm run test:1",
       "input": "",
@@ -11,7 +11,7 @@
       "points": 10
     },
     {
-      "name": "STEP-2 Test",
+      "name": "Step-2 Test",
       "setup": "npm install",
       "run": "npm run test:2",
       "input": "",
@@ -21,7 +21,7 @@
       "points": 10
     },
     {
-      "name": "STEP-3 Test",
+      "name": "Step-3 Test",
       "setup": "npm install",
       "run": "npm run test:3",
       "input": "",
@@ -31,17 +31,17 @@
       "points": 10
     },
     {
-      "name": "STEP-4 Test",
+      "name": "Step-4 Test",
       "setup": "npm install",
       "run": "npm run test:4",
       "input": "",
       "output": "",
       "comparison": "exact",
       "timeout": 10,
-      "points": 10
+      "points": null
     },
     {
-      "name": "STEP-5 Test",
+      "name": "Step-5 Test",
       "setup": "npm install",
       "run": "npm run test:5",
       "input": "",
@@ -51,7 +51,7 @@
       "points": 10
     },
     {
-      "name": "STEP-6 Test",
+      "name": "Step-6 Test",
       "setup": "npm install",
       "run": "npm run test:6",
       "input": "",
@@ -61,7 +61,7 @@
       "points": 10
     },
     {
-      "name": "STEP-7 Test",
+      "name": "Step-7 Test",
       "setup": "npm install",
       "run": "npm run test:7",
       "input": "",
@@ -71,7 +71,7 @@
       "points": 10
     },
     {
-      "name": "STEP-8 Test",
+      "name": "Step-8 Test",
       "setup": "npm install",
       "run": "npm run test:8",
       "input": "",
@@ -81,7 +81,7 @@
       "points": 10
     },
     {
-      "name": "STEP-9 Test",
+      "name": "Step-9 Test",
       "setup": "npm install",
       "run": "npm run test:9",
       "input": "",
@@ -91,7 +91,7 @@
       "points": 10
     },
     {
-      "name": "STEP-10 Test",
+      "name": "Step-10 Test",
       "setup": "npm install",
       "run": "npm run test:10",
       "input": "",
@@ -101,7 +101,7 @@
       "points": 10
     },
     {
-      "name": "STEP-11 Test",
+      "name": "Step-11 Test",
       "setup": "npm install",
       "run": "npm run test:11",
       "input": "",
@@ -111,7 +111,7 @@
       "points": 10
     },
     {
-      "name": "STEP-12 Test",
+      "name": "Step-12 Test",
       "setup": "npm install",
       "run": "npm run test:12",
       "input": "",
@@ -121,7 +121,7 @@
       "points": 10
     },
     {
-      "name": "STEP-13 Test",
+      "name": "Step-13 Test",
       "setup": "npm install",
       "run": "npm run test:13",
       "input": "",
@@ -131,7 +131,7 @@
       "points": 10
     },
     {
-      "name": "STEP-14 Test",
+      "name": "Step-14 Test",
       "setup": "npm install",
       "run": "npm run test:14",
       "input": "",
@@ -141,7 +141,7 @@
       "points": 10
     },
     {
-      "name": "STEP-15 Test",
+      "name": "Step-15 Test",
       "setup": "npm install",
       "run": "npm run test:15",
       "input": "",
@@ -151,7 +151,7 @@
       "points": 10
     },
     {
-      "name": "STEP-16 Test",
+      "name": "Step-16 Test",
       "setup": "npm install",
       "run": "npm run test:16",
       "input": "",
@@ -161,7 +161,7 @@
       "points": 10
     },
     {
-      "name": "STEP-17 Test",
+      "name": "Step-17 Test",
       "setup": "npm install",
       "run": "npm run test:17",
       "input": "",
@@ -171,7 +171,7 @@
       "points": 10
     },
     {
-      "name": "STEP-18 Test",
+      "name": "Step-18 Test",
       "setup": "npm install",
       "run": "npm run test:18",
       "input": "",
@@ -181,7 +181,7 @@
       "points": 10
     },
     {
-      "name": "STEP-19 Test",
+      "name": "Step-19 Test",
       "setup": "npm install",
       "run": "npm run test:19",
       "input": "",
@@ -189,8 +189,9 @@
       "comparison": "exact",
       "timeout": 10,
       "points": 10
-    },{
-      "name": "STEP-20 Test",
+    },
+    {
+      "name": "Step-20 Test",
       "setup": "npm install",
       "run": "npm run test:20",
       "input": "",

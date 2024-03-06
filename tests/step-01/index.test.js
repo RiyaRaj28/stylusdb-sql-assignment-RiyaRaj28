@@ -1,3 +1,3 @@
-test('Basic Jest Test', () => {
-  expect(1).toBe(1);
-});
+test('Baisc Jest Test', ()=> {
+  expect(1).toBe(1); 
+}); 

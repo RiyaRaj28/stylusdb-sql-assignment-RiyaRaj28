@@ -3,15 +3,47 @@ function parseQuery(query) {
     const match = query.match(selectRegex);
 
     if (match) {
-        const [, fields, table, whereClause] = match;
+        console.log(match)
+        const [, fields, table, whereString] = match;
+        console.log(`${fields} and table is ${table}`)
+        const whereClause = whereString ? parseWhereClause(whereString) : [];
         return {
             fields: fields.split(',').map(field => field.trim()),
             table: table.trim(),
-            whereClause : whereClause ? whereClause.trim() : null
+            whereClause 
         };
     } else {
         throw new Error('Invalid query format');
     }
 }
 
+function parseWhereClause(whereString) {
+    const conditions = whereString.split(/ AND | OR /i);
+    return conditions.map(condition => {
+        const [field, operator, value] = condition.split(/\s+/);
+        return { field, operator, value };
+    });
+}
+
+
+
 module.exports = parseQuery;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -41,7 +41,7 @@ async function executeSELECTQuery(query) {
     // Apply WHERE clause filtering after JOIN (or on the original data if no join)
     const filteredData = whereClauses.length > 0
         ? data.filter(row => whereClauses.every(clause => evaluateCondition(row, clause)))
-        : data;
+        : data ;
 
     // Select the specified fields
     return filteredData.map(row => {

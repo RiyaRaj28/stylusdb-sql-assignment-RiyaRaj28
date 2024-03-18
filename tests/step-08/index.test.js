@@ -25,6 +25,7 @@ test('Parse SQL Query', () => {
 test('Execute SQL Query', async () => {
     const query = 'SELECT id, name FROM student';
     const result = await executeSELECTQuery(query);
+    console.log("hi this is execute sql result", result);
     expect(result.length).toBeGreaterThan(0);
     expect(result[0]).toHaveProperty('id');
     expect(result[0]).toHaveProperty('name');

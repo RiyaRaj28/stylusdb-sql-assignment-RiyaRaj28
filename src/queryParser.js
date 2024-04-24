@@ -2,7 +2,6 @@ function parseWhereClause(whereString) {
     const conditionRegex = /(.*?)(=|!=|>|<|>=|<=)(.*)/;
     return whereString.split(/ AND | OR /i).map(conditionString => {
         const match = conditionString.match(conditionRegex);
-        // console.log("matched statement", match);
         if (match) {
             const [, field, operator, value] = match;
             return { field: field.trim(), operator, value: value.trim() };
@@ -14,7 +13,6 @@ function parseWhereClause(whereString) {
 function parseJoinClause(query) {
     const joinRegex = /\s(INNER|LEFT|RIGHT) JOIN\s(.+?)\sON\s([\w.]+)\s*=\s*([\w.]+)/i;
     const joinMatch = query.match(joinRegex);
-    // console.log("joinMatch", joinMatch);
 
     if (joinMatch) {
         return {
@@ -40,11 +38,9 @@ function parseQuery(query) {
     let selectPart, joinPart; 
 
     const whereSplit = query.split(/\sWHERE\s/i);
-    //SELECT student.name, enrollment.course FROM student INNER JOIN enrollment ON student.id=enrollment.student_id 
     query = whereSplit[0];
 
     const whereClause = whereSplit.length>1 ? whereSplit[1].trim() : null;    //assigned empty array here
-    //student.name = John
 
     const joinSplit = query.split(/\s(INNER|LEFT|RIGHT) JOIN\s/i);
     selectPart = joinSplit[0].trim(); 
@@ -63,9 +59,7 @@ function parseQuery(query) {
     if(whereClause){
         whereClauses = parseWhereClause(whereClause); 
     }
-    // console.log("wherecheck", whereClauses);
 
-    // console.log("fields, table,whereClauses,joinType,joinTable,joinCondition", fields, table,whereClauses,joinType,joinTable,joinCondition);
 
     return{
         fields : fields.split(',').map(field => field.trim()),

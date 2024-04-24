@@ -24,7 +24,6 @@ function performInnerJoin(data, joinData, joinCondition, fields, table){
             })
             .map(joinRow => {
                 return fields.reduce((acc, field) => {
-                    // console.log("this is acc, field", acc, field);
                     const [tableName, fieldName] = field.split('.');
                     acc[field] = tableName === table 
                     ? mainRow[fieldName] 
@@ -91,8 +90,6 @@ function performLeftJoin(data, joinData, joinCondition, fields, table){
     }, {});
 
     matchingdata.push(resultArray)
-
-
     return matchingdata; 
 }
 
@@ -116,15 +113,8 @@ function performRightJoin(data, joinData, joinCondition, fields, table){
     
                     return acc;
                 }, {});
-            
             });
-        
     });
-
-    console.log("Dataa", data);
-    console.log("Join Dataa", joinData);
-
-    console.log("matching data", matchingdata); 
 
     let nonMatchingdata = {};
     let count;
@@ -148,8 +138,6 @@ function performRightJoin(data, joinData, joinCondition, fields, table){
         }
     }
 
-    console.log(" Hii nonMatData", nonMatchingdata);
-
     const resultArray = fields.reduce((acc, field) => {
         const[tableName, fieldName] = field.split('.');
 
@@ -159,15 +147,7 @@ function performRightJoin(data, joinData, joinCondition, fields, table){
 
     matchingdata.push(resultArray)
 
-    console.log("Resultant array :", matchingdata); 
-
     return matchingdata; 
-
-
-
-
-
-
 }
 
 async function executeSELECTQuery(query) {

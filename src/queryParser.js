@@ -1,3 +1,40 @@
+function parseWhereClause(whereString) {
+    const conditionRegex = /(.*?)(=|!=|>|<|>=|<=)(.*)/;
+    return whereString.split(/ AND | OR /i).map(conditionString => {
+        const match = conditionString.match(conditionRegex);
+        // console.log("matched statement", match);
+        if (match) {
+            const [, field, operator, value] = match;
+            return { field: field.trim(), operator, value: value.trim() };
+        }
+        throw new Error('Invalid WHERE clause format');
+    });
+}
+
+function parseJoinClause(query) {
+    const joinRegex = /\s(INNER|LEFT|RIGHT) JOIN\s(.+?)\sON\s([\w.]+)\s*=\s*([\w.]+)/i;
+    const joinMatch = query.match(joinRegex);
+    // console.log("joinMatch", joinMatch);
+
+    if (joinMatch) {
+        return {
+            joinType: joinMatch[1].trim(),
+            joinTable: joinMatch[2].trim(),
+            joinCondition: {
+                left: joinMatch[3].trim(),
+                right: joinMatch[4].trim()
+            }
+        };
+    }
+
+    return {
+        joinType: null,
+        joinTable: null,
+        joinCondition: null
+    };
+}
+
+
 function parseQuery(query) {
     query = query.trim();
     let selectPart, joinPart; 
@@ -9,14 +46,9 @@ function parseQuery(query) {
     const whereClause = whereSplit.length>1 ? whereSplit[1].trim() : null;    //assigned empty array here
     //student.name = John
 
-    const joinSplit = query.split(/\sINNER JOIN\s/i);
+    const joinSplit = query.split(/\s(INNER|LEFT|RIGHT) JOIN\s/i);
     selectPart = joinSplit[0].trim(); 
-    //selectPart = SELECT student.name, enrollment.course FROM student
-
-    joinPart = joinSplit.length>1 ? joinSplit[1].trim() : null;
-    //joinPart = enrollment ON student.id=enrollment.student_id  
-
-    //parse selectPart = SELECT student.name, enrollment.course FROM student
+  
     const selectRegex = /^SELECT\s(.+?)\sFROM\s(.+)/i;         //have
     const selectMatch = selectPart.match(selectRegex);
     if(!selectMatch){
@@ -24,59 +56,29 @@ function parseQuery(query) {
     }
     const[, fields , table] = selectMatch;  
 
-    //parse the join part if it exists
-    //enrollment ON student.id=enrollment.student_id
-    let joinTable = null, joinCondition = null; 
-    if(joinPart)
-    {
-        const joinRegex = /^(.+?)\sON\s([\w.]+)\s*=\s*([\w.]+)/i; 
-        const joinMatch = joinPart.match(joinRegex);
-        if(!joinMatch)
-        {
-            throw new Error("Join clause does not match!");
-        }
 
-        joinTable = joinMatch[1].trim();
-        joinCondition = 
-        {
-            left : joinMatch[2].trim(),
-            right : joinMatch[3].trim()
-        };
-    }
+    const{ joinType, joinTable, joinCondition } = parseJoinClause(query); 
 
-    //student.name = John
     let whereClauses = [];
     if(whereClause){
         whereClauses = parseWhereClause(whereClause); 
     }
-    console.log("wherecheck", whereClauses);
+    // console.log("wherecheck", whereClauses);
+
+    // console.log("fields, table,whereClauses,joinType,joinTable,joinCondition", fields, table,whereClauses,joinType,joinTable,joinCondition);
 
     return{
         fields : fields.split(',').map(field => field.trim()),
         table : table.trim(),
         whereClauses,
+        joinType,
         joinTable,
-        joinCondition
+        joinCondition,
     }; 
 
 }
 
-function parseWhereClause(whereString) {
-    const conditionRegex = /(.*?)(=|!=|>|<|>=|<=)(.*)/;
-    return whereString.split(/ AND | OR /i).map(conditionString => {
-        const match = conditionString.match(conditionRegex);
-        console.log("matched statement", match);
-        if (match) {
-            const [, field, operator, value] = match;
-            return { field: field.trim(), operator, value: value.trim() };
-        }
-        throw new Error('Invalid WHERE clause format');
-    });
-}
-
-
-
-module.exports = parseQuery;
+module.exports = { parseQuery, parseJoinClause };
 
 
 
